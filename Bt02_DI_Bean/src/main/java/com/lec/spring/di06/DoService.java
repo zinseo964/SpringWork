@@ -24,7 +24,7 @@ class RegisterService implements DoService {
 
 }
 
-@Service
+// @Service
 class ReadService implements DoService {
     DAO dao;
 
