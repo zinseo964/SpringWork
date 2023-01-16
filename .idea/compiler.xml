@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SpringWork" />
         <module name="Bt02_DI_Bean" />
+        <module name="Bt10_RequestMapping" />
         <module name="Bt09_MVC" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Bt02_DI_Bean" options="-parameters" />
       <module name="Bt09_MVC" options="-parameters" />
+      <module name="Bt10_RequestMapping" options="-parameters" />
       <module name="SpringWork" options="-parameters" />
     </option>
   </component>

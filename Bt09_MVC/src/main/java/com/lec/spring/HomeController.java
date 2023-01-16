@@ -24,9 +24,14 @@ public class HomeController {
 
     @RequestMapping("/") //  "/" 라는 url 로 request 라 오면 아래 메소드가 처리(handle) 한다
     public String now(Model model) {
+        // put a data in to model
+        // name is a String, value is an Object
         LocalDateTime t = LocalDateTime.now();
         model.addAttribute("serverTime", t.toString());
-        return "home"; //view return
+        return "home"; //view return ; view must be handler's return value
+        // basic : "templates/" + return value + ".html"
+
+        // move (this)view file and model data to template engine
     }
     @RequestMapping("/aaa")
     public String home(Model model) {
@@ -35,5 +40,13 @@ public class HomeController {
         model.addAttribute("first", a);
         model.addAttribute("second",b);
         return "aaa/my";
+    }
+    @RequestMapping("/aaa/bbb")
+    public String aaabbb(Model model){ // handler name is not also important
+        int a = new Random().nextInt(10);
+        int b = new Random().nextInt(5);
+        model.addAttribute("first", a);
+        model.addAttribute("second",b);
+        return "aaa/bbb/title";
     }
 }
