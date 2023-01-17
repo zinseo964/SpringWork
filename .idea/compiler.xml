@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringWork" />
+        <module name="Bt13_Thymeleaf" />
         <module name="Bt02_DI_Bean" />
         <module name="Bt10_RequestMapping" />
         <module name="Bt09_MVC" />
@@ -19,6 +20,7 @@
       <module name="Bt02_DI_Bean" options="-parameters" />
       <module name="Bt09_MVC" options="-parameters" />
       <module name="Bt10_RequestMapping" options="-parameters" />
+      <module name="Bt13_Thymeleaf" options="-parameters" />
       <module name="SpringWork" options="-parameters" />
     </option>
   </component>

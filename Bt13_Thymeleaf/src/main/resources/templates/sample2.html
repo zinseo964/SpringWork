@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample2</title>
+</head>
+<body>
+  <h4 th:text="m"></h4> <!-- 단순 "m" 출력  -->
+  <h4 th:text="${m}"></h4> <!-- ${} 객체, 변수 표현 , 객체의 경우 toString() 값이 표현됨  ; model.getAttribute("m").toString() -->
+
+  <div th:text="${'aaa'}"></div>
+  <div th:text="${aa}">?</div> <!--Model 에 없는 attribute 'aa' 따라서 아무것도 안보여줌 ! not error !  -->
+  <div th:text="${'aaa' + 'bbb'}"></div> <!-- thymeleaf 에서는 문자열 연산을 처리해준다 -->
+<!--  <div th:text="${aaa+bbb}"}></div>  Model 에 있는 attribute 'aaa' 와 'bbb'를 찾는데 없으니까 error 발생- ; null + null 은 error
+ ! -->
+  <hr>
+  <div th:text="${'aaa'+10+'bbb'}"></div>
+  <div th:text="${10 + 20}"></div>
+  <div th:text="${10 * 20}"></div>
+  <div th:text="${10 / 20}"></div>
+  <div th:text="${10 % 3}"></div>
+  <div th:text="${10 / 20.0}"></div>
+  <hr>
+  <div th:text="10 + 20"></div>
+  <div th:text="10 - 20"></div>
+  <div th:text="m + 20"></div>
+  <hr>
+  <div th:text="${m.name}"></div> <!-- m.getName() ; 이미 getter, setter 가 존재하므로, 존재하는 getter 불러옴 ; getter = property -->
+  <div th:text="${m.regdate}"></div> <!-- m.getRegDate() -->
+  <div th:text="${m.no}"></div> <!-- m.getNo() -->
+  <div th:text="${m.id}"></div> <!-- m.getId() -->
+  <div th:text="${m.pw}"></div> <!-- m.getPw() -->
+<!--  <div th:text="${m.age}"></div> &lt;!&ndash; getAge() 란 method 는 없으므로 error ?! No ! 그 전에 age 라는 property 가 없어서
+error !
+ &ndash;&gt;-->
+
+
+</body>
+</html>
