@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>sample6</title>
+    <style>
+        table, th, td {
+            border : 1px solid black;
+            border-collapse : collapse;
+        }
+        table {
+            width : 100%,
+        }
+    </style>
+</head>
+<body>
+  <h1>/sample6</h1>
+
+  <h1>#1</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>RegDate</th>
+    </tr>
+    <tr th:each="member : ${list}">
+      <td>[[${member.id}]]</td>
+      <td>[[${member.name}]]</td>
+      <td>[[${member.regdate}]]</td>
+    </tr>
+  </table>
+
+  <hr>
+  <h1>#2 : inline</h1>
+  <table th:inline="text"> <!-- th:inline="text" 가 기본값으로 들어가있음 ; 위에는 이거 입력 안해줘도 기본값으로 들어가 있음 -->
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>RegDate</th>
+    </tr>
+    <tr th:each="member : ${list}">
+      <td>[[${member.id}]]</td>
+      <td>[[${member.name}]]</td>
+      <td>[[${member.regdate}]]</td>
+    </tr>
+  </table>
+
+  <h3 th:if="${list} and ${#lists.size(list) > 0}">List size : [[${#lists.size(list)}]]</h3>
+
+</body>
+</html>

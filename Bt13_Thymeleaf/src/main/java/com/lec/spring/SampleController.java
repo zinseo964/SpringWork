@@ -75,6 +75,23 @@ public class SampleController {
     public void sample4(Model model){
         list2.get(3).setId(null);
         model.addAttribute("list", list2);
+
+        // th:if 에서 판정되는 형식 알아보기
+        model.addAttribute("test1", "aaa");
+        model.addAttribute("test2", "");
+        model.addAttribute("test3", null);
+        model.addAttribute("test4", false);
+    }
+    @GetMapping("/sample5") // GET 방식으로 /sample5 request 에 대해 동작하는 handler
+    public void sample5(Model model){
+        String result = "SUCCESS";
+        model.addAttribute("result", result);
     }
 
+    @GetMapping("/sample6")
+    public void sample6(Model model){
+        model.addAttribute("list", list2);
+        String result = "Success";
+        model.addAttribute("result", result);
+    }
 }

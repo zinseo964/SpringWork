@@ -38,19 +38,35 @@
     <hr>
     <table th:with="target = 'u01'">
       <tr>
+        <td>Link</td>
         <td>ID</td>
         <td>Name</td>
         <td>RegDate</td>
       </tr>
 
-      <tr th:each="member : ${list}"> <!-- for 문처럼 반복해주는 역할 ! -->
+      <tr th:each="member : ${list}"
+        th:if="${member.id}"> <!-- for 문처럼 반복해주는 역할 !, if 에 null 값이 오면 false 판정  -->
         <td >
           <a th:if="${member.id == target}" href="/modify">MODIFY</a> <!-- if 조건식 값이 참일때만 렌더링 됨 -->
           <p th:unless="${member.id == target}">VIEW</p> <!-- unless 조건값이 거짓일때만 렌더링 -->
         </td>
+        <td th:text="${member.id}"></td>
         <td th:text="${member.name}"></td>
         <td th:text="${#temporals.format(member.regdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
       </tr>
     </table>
+
+    <hr>
+    test1 : <span th:if="${test1}" th:text="${test1}"></span> <!-- true -->
+    test2 : <span th:if="${test2}" th:text="${test2}"></span> <!-- true -->
+    test3 : <span th:if="${test3}" th:text="${test3}"></span> <!-- false (null) -->
+    test4 : <span th:if="${test4}" th:text="${test4}"></span> <!-- false (false) -->
+
+    <hr>
+<!--null 혹은 empty 문자열 -->
+    <span th:if="${not #strings.isEmpty(test1)}" th:text="${test1}"></span><br> <!-- empty 가 아닌 경우에만 rendering -->
+    <span th:if="${not #strings.isEmpty(test2)}" th:text="${test2}"></span><br> <!-- empty 가 아닌 경우에만 rendering -->
+    <span th:if="${not #strings.isEmpty(test3)}" th:text="${test3}"></span><br> <!-- empty 가 아닌 경우에만 rendering -->
+
 </body>
 </html>
