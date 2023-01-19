@@ -5,7 +5,21 @@
     <title>sample8</title>
 </head>
 <body>
+    <!--
+        th: insert => 자식으로 fragment 삽입
+        th: replace => 해당 element 를 fragment 로 치환
+    -->
+
     <div th:insert="~{fragments/header::header}"></div>
+
+    <ul>
+        <li th:insert="~{main/webpage/side::left}"></li>
+        <li th:insert="~{main/webpage/side::right}"></li>
+    </ul>
+    <ul>
+        <li th:replace="~{main/webpage/side::left}"></li>
+        <li th:replace="~{main/webpage/side::right}"></li>
+    </ul>
     <h1>/sample8</h1>
 <!--  <div>Context Path : <b th:text="${#request.getContextPath()}"></b></div> &lt;!&ndash; request, session, servletContext,response 는 더이상 사용할 수 없다  !!-->
     <ol>
