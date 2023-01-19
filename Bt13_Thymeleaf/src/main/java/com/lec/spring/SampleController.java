@@ -94,4 +94,19 @@ public class SampleController {
         String result = "Success";
         model.addAttribute("result", result);
     }
+
+    @GetMapping("/sample7")
+    public void sample7(Model model){
+        model.addAttribute("now1", LocalDateTime.now()); // java.time.LocalDateTime
+        model.addAttribute("now2", new Date()); //java.util.Date 역시 현재 시간을 담는다
+        model.addAttribute("price", 123456789);
+        model.addAttribute("title", "This is sample");
+        model.addAttribute("options", Arrays.asList("AAA", "BBB", "CCC", "DDD")); // <List>
+
+    }
+
+    @GetMapping("/sample8")
+    public void sample8(Model model){
+
+    }
 }

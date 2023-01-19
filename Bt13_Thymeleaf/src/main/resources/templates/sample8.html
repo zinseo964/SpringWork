@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>sample8</title>
+</head>
+<body>
+<h1>/sample8</h1>
+<!--  <div>Context Path : <b th:text="${#request.getContextPath()}"></b></div> &lt;!&ndash; request, session, servletContext,response 는 더이상 사용할 수 없다  !!-->
+    <ol>
+        <h3>Absolute URL @{http:// ... }</h3>
+        <li><a href="sample1">sample1</a></li>
+        <li><a href="http://localhost:8081/thymeleaf/sample1">sample1</a></li>
+        <li><a th:href="@{http://localhost:8081/thymeleaf/sample1}">sample1</a></li>
+        <li><a href="http://localhost:8081/thymeleaf/sample1">sample1</a></li>
+
+    </ol>
+</body>
+</html>

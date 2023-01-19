@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>sample7</title>
+    <style>
+      table, th, td {
+	  border : 1px solid black;
+	  border-collapse: collapse;
+      }
+      table {width: 100%;}
+    </style>
+
+
+</head>
+<body>
+  <h1>/sample7</h1>
+  <h1 th:text="${now1}"></h1> <!-- local date time 객체의 toString 값 -->
+  <h1 th:text="${#temporals.format(now1, 'yyyy-MM-dd HH:mm:ss')}"></h1> <!-- java.time.* package 값을 표현할 때 temporals 사용
+   -->
+
+  <hr>
+  <h1 th:text="${now2}"></h1> <!-- date 객체의 toString 값 -->
+  <h1 th:text="${#dates.format(now2, 'yyyy-MM-dd')}"></h1>
+
+  <div th:with="timeValue=${#dates.createToday()}">
+    <p>[[${timeValue}]]</p>
+  </div>
+
+  <hr>
+  <h1 th:text="${price}"></h1>
+  <h2 th:text="${#numbers.formatInteger(price, 3, 'COMMA')}"></h2>
+
+  <div th:with="priceValue=2099.87654">
+    <p th:text="${priceValue}"></p>
+    <p th:text="${#numbers.formatInteger(priceValue, 3, 'COMMA')}"></p>
+    <p th:text="${#numbers.formatDecimal(priceValue, 5, 10, 'POINT')}"></p>
+    <p th:text="${#numbers.formatDecimal(priceValue, 5, 2, 'POINT')}"></p>
+  </div>
+
+  <hr>
+  <h1 th:text="${title}"></h1>
+  <span th:utext="${#strings.replace(title, 's', '<b>s</b>')}"></span>
+
+  <ul>
+    <li th:each=" str: ${#strings.listSplit(title, ' ')}"> <!-- title 에 해당하는 문자열이 공백을 기준으로 리스트로 바뀜  -->
+      [[${str}]]
+    </li>
+  </ul>
+
+  <hr>
+  <h1 th:text="${options}"></h1>
+
+</body>
+</html>
