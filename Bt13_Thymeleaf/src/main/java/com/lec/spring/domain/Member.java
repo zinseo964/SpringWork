@@ -23,7 +23,7 @@ public class Member {
 
     public String getRegDateTime(){
         return this.regdate.format(
-                DateTimeFormatter.ofPattern("yyyy.mm.dd hh:mm:ss")
+                DateTimeFormatter.ofPattern("yyyy.MM.dd hh:mm:ss")
         );
     }
 

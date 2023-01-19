@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -63,6 +64,17 @@ public class SampleController {
         System.out.println(model.addAttribute("list2", list2));
         System.out.println(model.addAttribute("map1", map1));
         System.out.println(model.addAttribute("map2", map2));
+    }
+
+    @RequestMapping("/sample3")
+    public void sample3(Model model){
+        model.addAttribute("list", list2);
+    }
+
+    @RequestMapping(value = "/sample4", method=RequestMethod.GET) // GET 방식으로 /sample4 request 에 대해 동작하는
+    public void sample4(Model model){
+        list2.get(3).setId(null);
+        model.addAttribute("list", list2);
     }
 
 }

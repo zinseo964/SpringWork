@@ -88,5 +88,13 @@ error !
   <div th:text="${map1[0]}">context</div> <!-- key:0 의 값 출력 -->
   <div th:text="${map1[3]}">context</div>
   <div th:text="${map1[6]}">context</div> <!-- 없는 key 값을 불러도 error 발생하지 않음 ! 출력이 안될 뿐 ! -->
+
+  <div th:text="${map2[AAA]}">context</div> <!-- AAA 자리에 없는 index 넣어도 error 아니지만 밑에 .이하에 없는 key 값 넣으면 error -> getXXX
+   를 찾기 때문 !
+   -->
+  <div th:text="${map2.AAA}">context</div>
+  <div th:text="${map2.BBB.name}">context</div>
+<!-- map2.BBB.name -> map2.get('BBB').getName() 의 의미 -->
+
 </body>
 </html>
