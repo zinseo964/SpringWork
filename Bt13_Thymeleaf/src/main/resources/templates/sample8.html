@@ -5,15 +5,77 @@
     <title>sample8</title>
 </head>
 <body>
-<h1>/sample8</h1>
+    <div th:insert="~{fragments/header::header}"></div>
+    <h1>/sample8</h1>
 <!--  <div>Context Path : <b th:text="${#request.getContextPath()}"></b></div> &lt;!&ndash; request, session, servletContext,response 는 더이상 사용할 수 없다  !!-->
     <ol>
         <h3>Absolute URL @{http:// ... }</h3>
         <li><a href="sample1">sample1</a></li>
         <li><a href="http://localhost:8081/thymeleaf/sample1">sample1</a></li>
         <li><a th:href="@{http://localhost:8081/thymeleaf/sample1}">sample1</a></li>
-        <li><a href="http://localhost:8081/thymeleaf/sample1">sample1</a></li>
+        <li><a th:href="@{'http://localhost:8081'+'/thymeleaf'+'/sample1'}">sample1</a></li>
+        <br>
+        <h3>Context-relative URLs @{/ ... }</h3>
+        <li><a href="sample1">sample1</a></li>
+        <li><a th:href="@{/sample1}">sample1</a></li> <!-- 실제 rendering 될때는 context- path rendering 됨 ; 언제든지 변경될
+        수 있는데 그 바뀌어 지는걸 바로, 알아서 적용할 수 있다 -->
+        <li><a th:href="@{/sample2}">sample2</a></li>
+        <br>
+        <h3>Server-relative URLs @{~... }</h3>
+        <li><a href="sample1">sample1</a></li>
+        <li><a th:href="@{~/sample1}">sample1</a></li> <!-- web root 로부터 시작 -->
+        <li><a th:href="@{~/thymeleaf/sample1}">sample1</a></li> <!-- 이렇게 하면 되지만 하드 코딩은 하지 않는걸로 .. 되도록이면 -->
+<!--        context-path 가 없으면 context relative 와 server relative 가 동일한 결과를 반환, 하지만 context-relative 사용하는거 추천-->
 
+        <br>
+        <h3>Parameter</h3>
+        <li><a th:href="@{/sample1?p1=aaa&p2=bbb}">sample1 ? p1 = aaa & p2 = bbb</a></li>
+        <li><a th:href="@{/sample1(p1='aaa',p2='bbb')}">sample1 ? p1 = aaa & p2 = bbb</a></li>
     </ol>
+
+    <h3>th:<i>attr</i></h3>
+    <input type="text" value="${value1}"><br> <!-- th: 를 붙이지 않으면 그냥 value1이 입력됨 -->
+    <input type="text" th:value="${value1}"><br> <!-- th:attribute 명시해야 thymeleaf 가 처리 -->
+    <input type="text" th:attr="value=${value1}, title=${value1}"><br> <!-- 여러개 attribute 를 setting 하는 경우 사용 -->
+
+    <button onclick="location.href='sample1'">sample1</button><br>
+    <button th:onclick="'location.href=\''+ @{/sample1} + '\''">sample1</button><br>
+    <button th:onclick="'location.href=\''+ @{${url1}} + '\''">sample1</button><br> <!-- 엥 @{/~~~~} 이렇게 하면 안되는데 ?-->
+
+
+    <hr>
+    <h3>th:block</h3>
+    <div th:with = "name='John'">
+        <div>
+            name: [[${name}]]
+            <ol>
+                <li th:text="${name}"></li>
+                <li th:text="${name}"></li>
+                <li th:text="${name}"></li>
+            </ol>
+        </div>
+    </div>
+
+    <div> name: [[${name}]] </div>
+
+    <hr>
+<!-- th:block 에서 선언한 변수는. 그 하위에서 사용 가능. th:block 은 response 되지 않는다 -->
+<th:block th:with="name='Joe'" th:if="10>2"> <!-- th tag 는 rendering 안됨 !  + if 문 거짓 판정 되면 rendering 자체가 안나옴 -->
+        <div>
+            <div>
+                name: [[${name}]]
+                <ol>
+                    <li th:text="${name}"></li>
+                    <li th:text="${name}"></li>
+                    <li th:text="${name}"></li>
+                </ol>
+            </div>
+        </div>
+
+        <div> name: [[${name}]] </div>
+    </th:block>
+
+
+    <div th:insert="~{fragments/footer::footer}"></div>
 </body>
 </html>
