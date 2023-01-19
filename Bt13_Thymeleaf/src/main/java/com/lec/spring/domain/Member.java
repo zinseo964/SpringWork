@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -15,5 +16,15 @@ public class Member {
     private String pw;
     private String name;
     private LocalDateTime regdate;
+
+    public String getNick(){
+        return "zinger";
+    }
+
+    public String getRegDateTime(){
+        return this.regdate.format(
+                DateTimeFormatter.ofPattern("yyyy.mm.dd hh:mm:ss")
+        );
+    }
 
 }

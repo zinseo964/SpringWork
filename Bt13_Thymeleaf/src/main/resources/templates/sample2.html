@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Sample2</title>
@@ -33,7 +33,60 @@
 <!--  <div th:text="${m.age}"></div> &lt;!&ndash; getAge() 란 method 는 없으므로 error ?! No ! 그 전에 age 라는 property 가 없어서
 error !
  &ndash;&gt;-->
+  <div th:text="${m.Nick}"></div> <!-- m.getNick() 이 있으니까 이것도 가능 ! ; nick 의 존재여부가 아니라 getter 의 여부가 중요 -->
+  <div th:text="${m.nick}"></div> <!-- m.getNick() ; 첫번째 글자의 대소문자 여부는 그닥 중요하지 않음 -->
+
+  <div th:text="${m.RegDateTime}"></div>
+  <div th:text="${m.regDateTime}"></div>
+
+  <hr>
+
+  <div th:text="aaa + bbb">context</div>
+  <div th:text="'aaa' + 'bbb'">context</div>
+<!--변수 표현식 안에 논리 연산자 및 삼항 연산자 사용 가능 -->
+  <div th:text="${true && false}">context</div>
+  <div th:text="(10 > 4) ? 'big' : 'small'">context</div>
+
+  <hr>
+  <h3>th:text th:utext</h3>
+  <div th:text="${'<h3>' + m.no + '</h3>' }">context</div>
+  <div th:utext="${'<h3>' + m.no + '</h3>' }">context</div> <!-- unescaped text -->
+
+<!-- escaping 하기 -->
+  <h3>Escaping</h3>
+  <div th:text="${'What''s up?'}">context</div>
+  <div th:text="'What\'s up?'">context</div> <!-- literal + backslash 는 가능  -->
+
+  <hr>
+  <h2>Array, List, Map</h2>
+  <div th:text="${arr1}">context</div>
+  <div th:text="${arr2}">context</div>
+  <div th:text="${list1}">context</div>
+  <div th:text="${list2}">context</div>
+  <div th:text="${map1}">context</div>
+  <div th:text="${map2}">context</div>
+
+  <div th:text="${arr1[0]}">context</div>
+  <div th:text="${arr1[3]}">context</div>
+  <div th:text="${arr1[2]}">context</div> <!-- index 범위 밖은 에러! -->
+
+  <div th:text="${arr2[0]}">context</div>
+  <div th:text="${arr2[3]}">context</div>
+  <div th:text="${arr2[0].name}">context</div>
+  <div th:text="${arr2[3].regdate}">context</div>
+
+ <!--  list 에도 배열처럼 [] 사용하여 접근 가능 index 벗어나면 error 발생 -->
+  <div th:text="${list1[0]}">context</div>
+  <div th:text="${list1[3]}">context</div>
+  <div th:text="${list1[2]}">context</div>
 
 
+  <div th:text="${list2[3]}">context</div>
+  <div th:text="${list2[0].name}">context</div>
+  <div th:text="${list2[3].regdate}">context</div>
+
+  <div th:text="${map1[0]}">context</div> <!-- key:0 의 값 출력 -->
+  <div th:text="${map1[3]}">context</div>
+  <div th:text="${map1[6]}">context</div> <!-- 없는 key 값을 불러도 error 발생하지 않음 ! 출력이 안될 뿐 ! -->
 </body>
 </html>
