@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!--model 을 주석처리해서 아래 값들은 출력되지 않음 -->
+id : [[${id}]]<br>
+name : [[${name}]] <br>
+
+<hr>
+<!--thymeleaf 에서는 param 접두어를 붙이면 ㅔarameter 표시 가능
+    parameter 를 표시하기 위해 굳이 model 에 담을 필요가 없다 -->
+id : [[${param.id}]]<br>
+name : [[${param.name}]] <br>
+</html>

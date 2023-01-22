@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Writing Board</title>
+</head>
+  <script>
+    function chkSubmit(){
+      frm = document.forms['frm'];
+
+      var name = frm['name'].value.trim();
+      var subject = frm['subject'].value.trim();
+
+      if(name == ""){
+        alert("Writer : Required to write");
+        frm['name'].focus();
+        return false;
+      }
+      if(subject == ""){
+        alert("Subject : Required to write");
+        frm['subject'].focus();
+        return false;
+      }
+      return true;
+    } // end chkSubmit()
+  </script>
+<body>
+<h2>Writing Board</h2>
+  <form name="frm" th:action="@{/board/writeOk}" method="post" onsubmit="return chkSubmit()">
+    Writer name :
+    <input type="text" name="name" value="zinger"/><br>
+    Subject :
+    <input type="text" name="subject" value="Hello"/><br>
+    Content :<br>
+    <textarea name="content">Have a Good day ! </textarea>
+    <br><br>
+    <input type="submit" value="submit"/>
+  </form>
+
+</body>
+</html>
