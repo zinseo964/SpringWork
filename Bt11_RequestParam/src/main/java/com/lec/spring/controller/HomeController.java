@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -111,7 +112,56 @@ public class HomeController {
     @PostMapping("/board/writeOk")
 //    public void writeOkBoard(String name, String subject, String content){} -> 기존 방식대로라면 이런식으롲 작동해야하는데, 모든
 //    parameter 를 작성해주기는 힘들다
-    public void writeOkBoard(Write write){ // command 객체를 사용, 코드 작업량이 매우 줄어든다 .
+    public void writeOkBoard(@ModelAttribute("DTO") Write write
+//                             ,Write anowrite
+    ){ // command 객체를 사용, 코드 작업량이 매우 줄어든다 .
+        // parameter 를 한꺼번에 다룰 수 있다.
+        // command 객체는 '객체 타입 명'으로 model attribute 추가 된다.
+        // Model attribute name 을 바꿀 경우 @ModelAttribute 로 지정 된다
         System.out.println("/board/writeOk : "+ write);
+//        System.out.println("another write : " + anowrite);
+    }
+
+    //------------------------------------------------------------------------------------
+    // pathVariable 사용 ; 각각의 경로가 의미를 갖는것
+
+    @RequestMapping("/board/writePath/{writer}/{subject}/{content}")
+    public String writePathBoard(
+            @PathVariable(name="writer") String name
+            , @PathVariable String subject
+            , @PathVariable String content
+            , Model model
+    ){
+        System.out.println("/board/writePath/ : name = "+name+", subject = " + subject + ", content = "+ content);
+
+        model.addAttribute("name", name);
+        model.addAttribute("subject", subject);
+        model.addAttribute("content", content);
+
+        return "board/writePath";
+    }
+
+    //------------------------------------------------------------------------------------
+    // @ResponseBody : view 를 사용하지 않고 직접 Response
+    @RequestMapping("/board/update")
+    @ResponseBody
+    public String boardUpdate(){
+        StringBuffer buff = new StringBuffer();
+        buff.append("<h1>Hello Spring</h1>");
+        buff.append("<h3>1. Request Parameter</h3>");
+        return buff.toString();
+    }
+
+    @RequestMapping("/board/detail")
+    @ResponseBody // object 를 response 하면 json 으로 변환되어 response 됨
+    public Write boardDatail(){
+        Write write = Write.builder()
+                .id(100)
+                .name("zinger")
+                .content("have a nice day")
+                .subject("hello")
+                .regDate(LocalDateTime.now())
+                .build();
+        return write;
     }
 }
