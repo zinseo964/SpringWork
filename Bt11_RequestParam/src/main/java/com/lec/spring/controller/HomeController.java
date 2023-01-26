@@ -191,5 +191,18 @@ public class HomeController {
         return "member/ageAdult";
     }
 
+    // forward
+    @RequestMapping("/member/detail")
+    public String memberDetail(){
+        System.out.println("Request : /member/detail");
+        return "forward:/member/notfound";
+    }
+
+    @RequestMapping("/member/notfound")
+    @ResponseBody
+    public String memberNotFound(){
+        System.out.println("Request : /member/notfound");
+        return "/member/notfound";
+    }
 
 } // end Controller
