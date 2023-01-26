@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Age Input</title>
+</head>
+<body>
+    <form th:action="@{/member/ageCheck}">
+        Input Your Age <br/>
+        <input type="text" name="age" size=4/><br/>
+        <input type="submit" value="submit"/>
+    </form>
+</body>
+</html>

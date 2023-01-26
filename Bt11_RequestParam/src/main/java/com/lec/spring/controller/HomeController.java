@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -164,4 +165,31 @@ public class HomeController {
                 .build();
         return write;
     }
-}
+
+
+    // redirect
+    @RequestMapping("/member/ageInput")
+    public void ageInput(){}
+
+    @RequestMapping("/member/ageCheck")
+    public String chkAge(int age, RedirectAttributes redirectAttrs){ // redirect 되는 Request 에 담을 parameter 지정
+        redirectAttrs.addAttribute("age", age); // age parameter 지정
+        if (age<19) {
+            return "redirect:/member/underAge"; // view 가 아니라 redirect 된다
+        } else {
+           return "redirect:/member/adult";
+        }
+    }
+
+    @RequestMapping("/member/underAge")
+    public String pageUnderAge(@ModelAttribute("age") int age){
+        return "member/ageUnder";
+    }
+
+    @RequestMapping("/member/adult")
+    public String pageAdult(int age){
+        return "member/ageAdult";
+    }
+
+
+} // end Controller
