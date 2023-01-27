@@ -20,5 +20,7 @@ public interface WriteRepository {
     // 전체 글 목록 : 최신순
     List<Write> findAll();
 
+    // 특정 id 글 수정(제목, 내용)
+    int update(Write write);
 
 }

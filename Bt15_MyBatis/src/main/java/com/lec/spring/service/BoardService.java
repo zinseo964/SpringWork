@@ -44,7 +44,25 @@ public class BoardService {
         return list;
     }
 
-        public List<Write> list(){
+    public List<Write> list(){
             return writeRepository.findAll();
+    }
+
+    // 특정 Id 의 글을 읽어오기
+    //조회수 증가 없음
+    public List<Write> selectById(long id) {
+        List<Write> list = new ArrayList<>();
+
+        Write write = writeRepository.findById(id);
+
+        if (write != null) {
+            list.add(write);
         }
+
+        return list;
+    }
+
+    public int update(Write write){
+        return writeRepository.update(write);
+    }
 }

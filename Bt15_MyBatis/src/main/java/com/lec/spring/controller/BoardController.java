@@ -43,10 +43,16 @@ public class BoardController {
     }
 
     @GetMapping("/update")
-    public void update(){}
+    public void update(long id, Model model){
+        model.addAttribute("list", boardService.selectById(id));
+    }
 
     @PostMapping("/update")
-    public void updateOk(){}
+    public String updateOk(Write write, Model model){
+        model.addAttribute("result", boardService.update(write));
+        model.addAttribute("dto", write);
+        return "board/updateOk";
+    }
 
     @PostMapping("/delete")
     public void deleteOk(){}

@@ -42,4 +42,10 @@
         <include refid="SELECT_BASE"/>
         ORDER BY id DESC
     </select>
+
+    <update id="update" flushCache="true" parameterType="com.lec.spring.domain.Write">
+        UPDATE t5_test_write
+        SET subject = #{subject}, content = #{content}
+        WHERE id =#{id}
+    </update>
 </mapper>
