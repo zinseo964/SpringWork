@@ -5,6 +5,10 @@ import com.lec.spring.repository.WriteRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // Service layer
 // transaction 담당
@@ -22,4 +26,25 @@ public class BoardService {
     public int write(Write write) {
         return writeRepository.save(write);
     }
+
+    // 특정 id 의 글 조회 , 아래의 2가지 transaction 처리
+    // 1. 조회수 증가 (UPDATE)
+    // 2. 글 읽어오기 (SELECT)
+    @Transactional
+    public List<Write> detail(long id) {
+        List<Write> list = new ArrayList<>();
+
+        writeRepository.incViewCnt(id);
+        Write write = writeRepository.findById(id);
+
+        if (write != null) {
+            list.add(write);
+        }
+
+        return list;
+    }
+
+        public List<Write> list(){
+            return writeRepository.findAll();
+        }
 }

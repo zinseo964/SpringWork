@@ -4,6 +4,7 @@ import com.lec.spring.domain.Write;
 import com.lec.spring.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +26,21 @@ public class BoardController {
     public void write(){}
 
     @PostMapping("/write")
-    public void writeOk(Write write){
-        boardService.write(write);
+    public String writeOk(Write write, Model model){
+        model.addAttribute("result", boardService.write(write));
+        model.addAttribute("dto", write); // auto-generated key 가 필요해서
+        return "board/writeOk";
     }
 
     @GetMapping("/detail")
-    public void detail(){}
+    public void detail(long id, Model model){
+        model.addAttribute("list", boardService.detail(id));
+    }
 
     @GetMapping("/list")
-    public void list(){}
+    public void list(Model model){
+        model.addAttribute("list", boardService.list());
+    }
 
     @GetMapping("/update")
     public void update(){}
