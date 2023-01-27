@@ -10,6 +10,7 @@
         <module name="SpringWork" />
         <module name="Bt13_Thymeleaf" />
         <module name="Bt11_RequestParam" />
+        <module name="Bt15_MyBatis" />
         <module name="Bt02_DI_Bean" />
         <module name="Bt10_RequestMapping" />
         <module name="Bt09_MVC" />
@@ -23,6 +24,7 @@
       <module name="Bt10_RequestMapping" options="-parameters" />
       <module name="Bt11_RequestParam" options="-parameters" />
       <module name="Bt13_Thymeleaf" options="-parameters" />
+      <module name="Bt15_MyBatis" options="-parameters" />
       <module name="SpringWork" options="-parameters" />
     </option>
   </component>
