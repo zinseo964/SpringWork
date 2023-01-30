@@ -48,4 +48,8 @@
         SET subject = #{subject}, content = #{content}
         WHERE id =#{id}
     </update>
+
+    <delete id="delete" flushCache="true" parameterType="com.lec.spring.domain.Write">
+        DELETE FROM t5_test_write WHERE id = #{id}
+    </delete>
 </mapper>

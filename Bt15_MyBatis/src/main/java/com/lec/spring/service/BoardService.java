@@ -65,4 +65,14 @@ public class BoardService {
     public int update(Write write){
         return writeRepository.update(write);
     }
+
+    public int deleteById(long id){
+        int result = 0;
+
+        Write write = writeRepository.findById(id);
+        if(write != null){
+            result = writeRepository.delete(write);
+        }
+        return result;
+    }
 }

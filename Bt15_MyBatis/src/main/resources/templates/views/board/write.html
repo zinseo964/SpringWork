@@ -16,18 +16,30 @@
 <div class="container mt-3">
     <h2>WRITE</h2>
     <hr>
+
+    <div class="row mt-5" th:if="${error }">
+        <div class="col-12 text-danger" th:text="${error }">
+<!--            error message -->
+
+        </div>
+    </div>
+
     <form th:action="@{/board/write}" method="post">
         <div class="mb-3">
             <label for="name">Writer : </label>
-            <input type="text" class="form-control" id="name" placeholder="write a Writer" name="user" required>
+            <input type="text" class="form-control" id="name" placeholder="write a Writer" name="user"
+                   th:value="${user}">
         </div>
         <div class="mb-3 mt-3">
             <label for="subject">Subject : </label>
-            <input type="text" class="form-control" id="subject" placeholder="write a Subject" name="subject" required>
+            <input type="text" class="form-control" id="subject" placeholder="write a Subject" name="subject"
+                   th:value="${subject}">
         </div>
         <div class="mb-3 mt-3">
             <label for="content">Content : </label>
-            <textarea class="form-control" rows="5" id="content" placeholder="write a Content" name="content"></textarea>
+            <textarea class="form-control" rows="5" id="content" placeholder="write a Content"
+                      name="content">[[${content}]]
+            </textarea>
         </div>
 
         <button type="submit" class="btn btn-outline-dark">COMPLETE</button>

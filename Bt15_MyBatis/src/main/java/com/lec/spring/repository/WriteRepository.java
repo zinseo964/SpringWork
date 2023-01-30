@@ -23,4 +23,7 @@ public interface WriteRepository {
     // 특정 id 글 수정(제목, 내용)
     int update(Write write);
 
+    // 특정 id 글 삭제 (Write 객체에 담아서 )
+    int delete(Write write);
+
 }

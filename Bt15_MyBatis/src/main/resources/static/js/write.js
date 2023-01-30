@@ -1,3 +1,3 @@
 $(function(){
-    // TODO
+    // TODO : need validation code
 });
