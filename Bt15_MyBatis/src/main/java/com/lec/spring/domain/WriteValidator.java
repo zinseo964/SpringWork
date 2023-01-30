@@ -1,6 +1,5 @@
 package com.lec.spring.domain;
 
-import jakarta.validation.Validation;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
