@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+  <script th:if="${result}">
+    alert('LOGIN Success');
+  </script>
+
+  <script th:unless="${result}">
+    alert('LOGIN FAIL');
+  </script>
+
+  <script>
+    location.href="login";
+  </script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Session List</title>
+</head>
+<body>
+<h1>Session List</h1>
+
+<div th:utext="${result}"></div>
+<br>
+<form th:action="@{/session/create}">
+    <input type="submit" value="create & renewal session ">
+</form>
+
+<br>
+<form th:action="@{/session/delete}">
+    <input type="submit" value="delete session">
+</form>
+</body>
+</html>
