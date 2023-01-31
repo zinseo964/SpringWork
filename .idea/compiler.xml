@@ -10,6 +10,7 @@
         <module name="SpringWork" />
         <module name="Bt13_Thymeleaf" />
         <module name="Bt11_RequestParam" />
+        <module name="Bt50_Board" />
         <module name="Bt15_MyBatis" />
         <module name="Bt02_DI_Bean" />
         <module name="Bt10_RequestMapping" />
@@ -27,6 +28,7 @@
       <module name="Bt13_Thymeleaf" options="-parameters" />
       <module name="Bt15_MyBatis" options="-parameters" />
       <module name="Bt16_CookieSession" options="-parameters" />
+      <module name="Bt50_Board" options="-parameters" />
       <module name="SpringWork" options="-parameters" />
     </option>
   </component>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.spring.repository.WriteRepository">
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Write"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+<!--        DMS 이용할때는 flushCache = true 값 꼭 넣어주기 -->
+        INSERT INTO t5_test_write
+        (subject, content, user)
+        VALUES
+        (#{subject}, #{content}, #{user})
+    </insert>
+
+    <update id="incViewCnt" flushCache="true">
+        UPDATE t5_test_write
+        SET viewcnt = viewcnt + 1
+        WHERE id = #{param1}
+    </update>
+
+    <!--    반복해서 사용될 커리문은 sql 태그로 정의한 후 include 태그로 가져다 쓸 수 있다 -->
+    <sql id="SELECT_BASE">
+        SELECT
+            id,
+            subject,
+            content,
+            viewcnt "viewCnt",
+            user,
+            regdate "regDate"
+        FROM
+            t5_test_write
+    </sql>
+
+    <select id="findById" resultType="com.lec.spring.domain.Write">
+        <include refid="SELECT_BASE"/>
+        WHERE
+            id = ${id}
+    </select>
+
+    <select id="findAll" resultType="com.lec.spring.domain.Write">
+        <include refid="SELECT_BASE"/>
+        ORDER BY id DESC
+    </select>
+
+    <update id="update" flushCache="true" parameterType="com.lec.spring.domain.Write">
+        UPDATE t5_test_write
+        SET subject = #{subject}, content = #{content}
+        WHERE id =#{id}
+    </update>
+
+    <delete id="delete" flushCache="true" parameterType="com.lec.spring.domain.Write">
+        DELETE FROM t5_test_write WHERE id = #{id}
+    </delete>
+</mapper>
