@@ -26,9 +26,12 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/Bt50_Board/ERD/t5_web_mysql_data.sql" connection-id="dffdd522-318c-4ae9-b52a-8c77782d232c" session-id="MAIN" current-schema="mydb2211" />
+    <mapping file-url="file://$PROJECT_DIR$/Bt50_Board/ERD/t5_web_mysql_test.sql" connection-id="dffdd522-318c-4ae9-b52a-8c77782d232c" session-id="MAIN" current-schema="mydb2211" />
     <mapping file-url="file://$PROJECT_DIR$/Bt15_MyBatis/ERD/t5_web_mysql_test.sql" connection-id="dffdd522-318c-4ae9-b52a-8c77782d232c" session-id="MAIN" current-schema="mydb2211" />
     <mapping file-url="file://$PROJECT_DIR$/Bt15_MyBatis/ERD/t5_web_mysql.sql" connection-id="dffdd522-318c-4ae9-b52a-8c77782d232c" session-id="MAIN" current-schema="mydb2211" />
     <mapping file-url="file://$PROJECT_DIR$/Bt15_MyBatis/ERD/t5_web_mysql_data.sql" connection-id="dffdd522-318c-4ae9-b52a-8c77782d232c" session-id="MAIN" current-schema="mydb2211" />
+    <mapping file-url="file://$PROJECT_DIR$/Bt50_Board/ERD/t5_web_mysql.sql" connection-id="dffdd522-318c-4ae9-b52a-8c77782d232c" session-id="MAIN" current-schema="mydb2211" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
