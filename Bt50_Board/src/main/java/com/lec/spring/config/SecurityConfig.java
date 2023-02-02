@@ -66,7 +66,33 @@ public class SecurityConfig {
 
                         // 로그인 실패하면 수행할 코드
                         // .failureHandler(AuthenticationFailureHandler)
-//                        .failureHandler(new CustomLoginFailureHandler())
+                        .failureHandler(new CustomLoginFailureHandler())
+                )
+
+                /********************************************
+                 * ③ 로그아웃 설정
+                 * .logout(LogoutConfigurer)
+                 ********************************************/
+                .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
+                        .logoutUrl("/user/logout")       // 로그아웃 수행 url
+                        //.logoutSuccessUrl("/login?logout")    // 로그아웃 성공후 redirect url
+                        .invalidateHttpSession(false)   // session invalidate (디폴트 true)
+                        // 이따가 CustomLogoutSuccessHandler 에서 꺼낼 정보가 있기 때문에 false 로 setting
+                        // .deleteCookies("JSESSIONID")   // 쿠키 제거
+
+                        // 로그아웃 성공후 수행할 코드
+                        // .logoutSuccessHandler(LogoutSuccessHandler)
+                        .logoutSuccessHandler(new CustomLogoutSuccessHandler())
+                )
+
+                /********************************************
+                 * ④ 예외처리 설정
+                 * .exceptionHandling(ExceptionHandlingConfigure)
+                 ********************************************/
+                .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
+                        // 권한(Authorization) 오류 발생시 수행할 코드
+                        // .accessDeniedHandler(AccessDeniedHandler)
+                        .accessDeniedHandler(new CustomAccessDeniedHandler())
                 )
                 .build();
     }

@@ -26,9 +26,9 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     // 로그인 성공 직후 수행할 동작
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
-        System.out.println("### 로그인 성공: onAuthenticationSuccess() 호출 ###");
+        System.out.println("### Login Success: onAuthenticationSuccess() 호출 ###");
 
-        System.out.println("접속IP: " + getClientIp(request));
+        System.out.println("Connected IP: " + getClientIp(request));
         PrincipalDetails userDetails = (PrincipalDetails)authentication.getPrincipal();
         System.out.println("username: " + userDetails.getUsername());
         System.out.println("password: " + userDetails.getPassword());
@@ -40,7 +40,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 
         // 로그인 시간을 세션에 저장하기 (※ logout 예제에서 사용)
         LocalDateTime loginTime = LocalDateTime.now();
-        System.out.println("로그인 시간: " + loginTime);
+        System.out.println("Login Time : " + loginTime);
         request.getSession().setAttribute("loginTime", loginTime);
 
         // 로그인 직전 url 로 redirect 하기
