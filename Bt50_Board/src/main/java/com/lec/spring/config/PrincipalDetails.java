@@ -58,6 +58,11 @@ public class PrincipalDetails implements UserDetails {
                 public String getAuthority() {
                     return auth.getName();
                 }
+
+                @Override
+                public String toString(){
+                    return auth.getName();
+                }
             });
         }
 
