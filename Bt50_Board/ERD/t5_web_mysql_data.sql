@@ -18,12 +18,9 @@ INSERT INTO t5_authority (name) VALUES
 ;
 -- 샘플 사용자
 INSERT INTO t5_user (username, password, name) VALUES
-('USER1', '1234', '회원1'),
-('USER2', '1234', '회원2'),
-('ADMIN1', '1234', '관리자1')
--- ('USER1', '$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2', '회원1'),
--- ('USER2', '$2a$10$7LTnvLaczZbEL0gabgqgfezQPr.xOtTab2NAF/Yt4FrvTSi0Y29Xa', '회원2'),
--- ('ADMIN1', '$2a$10$53OEi/JukSMPr3z5RQBFH.z0TCYSUDPtxf1/8caRyRVdDNdHA9QHi', '관리자1')
+ ('USER1', '$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2', '회원1'),
+ ('USER2', '$2a$10$7LTnvLaczZbEL0gabgqgfezQPr.xOtTab2NAF/Yt4FrvTSi0Y29Xa', '회원2'),
+ ('ADMIN1', '$2a$10$53OEi/JukSMPr3z5RQBFH.z0TCYSUDPtxf1/8caRyRVdDNdHA9QHi', '관리자1')
 ;
 -- 샘플 사용자-권한
 INSERT INTO t5_user_authorities VALUES
