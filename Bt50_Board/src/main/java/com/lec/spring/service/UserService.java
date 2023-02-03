@@ -51,6 +51,7 @@ public class UserService {
         Long auth_id = auth.getId();
         authorityRepository.addAuthority(user_id, auth_id);
 
+
         return 1;
     }
 

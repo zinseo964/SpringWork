@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
 //시큐리티가 /user/login (POST) 주소요청이 오면 낚아채서 로그인을 진행시킨다.
-//로그인(인증) 진행이 완료되면 'security session' 에 넣어주게 된다.
-//우리가 익히 알고 있는 같은 session 공간이긴 한데 시큐리티가 자신이 사용하기 위한 공간을 가집니다.
+//로그인(인증) 진행이 완료되면 '시큐리티 session' 에 넣어주게 된다.
+//우리가 익히 알고 있는 같은 session 공간이긴 한데..
+//시큐리티가 자신이 사용하기 위한 공간을 가집니다.
 //=> Security ContextHolder 라는 키값에다가 session 정보를 저장합니다.
 //여기에 들어갈수 있는 객체는 Authentication 객체이어야 한다.
 //Authentication 안에 User 정보가 있어야 됨.
@@ -25,7 +25,9 @@ import java.util.List;
 //        => UserDetails 정보를 꺼내면 된다.
 
 public class PrincipalDetails implements UserDetails {
+
     private UserService userService;
+
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
@@ -37,13 +39,14 @@ public class PrincipalDetails implements UserDetails {
         return user;
     }
 
-    public PrincipalDetails(User user){ // 생성자
+    public PrincipalDetails(User user){
         System.out.println("UserDetails(user) 생성: " + user);
         this.user = user;
     }
 
     // 해당 User 의 '권한(들)'을 리턴
     // 현재 로그인한 사용자의 권한정보가 필요할때마다 호출된다. 혹은 필요할때마다 직접 호출해 사용할수도 있다
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         System.out.println("getAuthorities() 호출");
@@ -59,8 +62,9 @@ public class PrincipalDetails implements UserDetails {
                     return auth.getName();
                 }
 
+                // thymeleaf 등에서 활용할 문자열
                 @Override
-                public String toString(){
+                public String toString() {
                     return auth.getName();
                 }
             });
@@ -68,6 +72,7 @@ public class PrincipalDetails implements UserDetails {
 
         return collect;
     }
+
     @Override
     public String getPassword() {
         return user.getPassword();
