@@ -3,6 +3,7 @@ package com.lec.spring.controller;
 import com.lec.spring.domain.Write;
 import com.lec.spring.domain.WriteValidator;
 import com.lec.spring.service.BoardService;
+import com.lec.spring.util.U;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 // Controller layer
-// request 처리 ~ response
+//  request 처리 ~ response
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -25,14 +26,17 @@ public class BoardController {
     private BoardService boardService;
 
     public BoardController(){
-        System.out.println("Created BoardController() !");
+        System.out.println("BoardController() 생성");
     }
 
     @GetMapping("/write")
     public void write(){}
 
     @PostMapping("/write")
-    public String writeOk( @ModelAttribute("dto") Write write , Model model){
+    public String writeOk(
+            @ModelAttribute("dto") Write write
+            , Model model
+    ){
         model.addAttribute("result", boardService.write(write));
         return "board/writeOk";
     }
@@ -42,9 +46,12 @@ public class BoardController {
         model.addAttribute("list", boardService.detail(id));
     }
 
+    // 페이징 사용
     @GetMapping("/list")
-    public void list(Model model){
-        model.addAttribute("list", boardService.list());
+    //public void list(Model model){
+    public void list(Integer page, Model model){
+//        model.addAttribute("list", boardService.list());
+        boardService.list(page, model);
     }
 
     @GetMapping("/update")
@@ -53,9 +60,8 @@ public class BoardController {
     }
 
     @PostMapping("/update")
-    public String updateOk(Write write, Model model){
+    public String updateOk(@ModelAttribute("dto") Write write, Model model){
         model.addAttribute("result", boardService.update(write));
-        model.addAttribute("dto", write);
         return "board/updateOk";
     }
 
@@ -65,10 +71,19 @@ public class BoardController {
         return "board/deleteOk";
     }
 
-    // Controller class 의 핸들러에서 폼 데이터를 바인딩 할때 검증하는 Validator 객체 지정
+    // 이 컨트롤러 클래스의 handler 에서 폼 데이터를 바인딩 할때 검증하는 Validator 객체 지정
     @InitBinder
     public void initBinder(WebDataBinder binder){
-        System.out.println("initBinder() Called");
+        System.out.println("initBinder() 호출");
         binder.setValidator(new WriteValidator());
     }
+
+    // 페이징
+    // pageRows 변경시 동작
+    @PostMapping("/pageRows")
+    public String pageRows(Integer page, Integer pageRows){
+        U.getSession().setAttribute("pageRows", pageRows);
+        return "redirect:/board/list?page=" + page;
+    }
+
 }

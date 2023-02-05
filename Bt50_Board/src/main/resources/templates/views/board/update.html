@@ -50,8 +50,8 @@
 <!--        하단 link-->
         <button type="submit" class="btn btn-outline-dark">Complete</button>
         <button type="button" class="btn btn-outline-dark" onclick="history.back()">Back</button>
-        <a class="btn btn-outline-dark" href="@{/board/list}">List</a>
-<!--        하단 link-->
+        <a class="btn btn-outline-dark" th:href="@{/board/list(page=${session.page})}">List</a>
+        <!--        하단 link-->
       </form>
     </div>
   </body>

@@ -58,7 +58,7 @@
 
             <!-- 하단 링크 -->
             <a class="btn btn-outline-dark" th:href="@{/board/update(id=${dto.id})}" th:if="${logged_user.id == dto.user.id}">수정</a>
-            <a class="btn btn-outline-dark" th:href="@{/board/list}">목록</a>
+            <a class="btn btn-outline-dark" th:href="@{/board/list(page=${session.page})}">목록</a>
             <button type="button" class="btn btn-outline-dark" id="btnDel" th:if="${logged_user.id == dto.user.id}">삭제</button>
             <a class="btn btn-outline-dark" th:href="@{/board/write}" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">작성</a>
             <!-- 하단 링크 -->

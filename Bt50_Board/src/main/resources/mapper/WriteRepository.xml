@@ -22,19 +22,19 @@
     <!-- 반복해서 사용될 쿼리문은 sql 태그로 정의 include 태그로 가져다 쓸수 있다 -->
     <sql id="SELECT_BASE">
         SELECT
-            w.id "w_id",
-            w.subject "w_subject",
-            w.content "w_content",
-            w.viewcnt "w_viewcnt",
-            w.regdate "w_regdate",
-            u.id "u_id",
-            u.username "u_username",
-            u.name "u_name",
-            u.regdate "u_regdate"
+        w.id "w_id",
+        w.subject "w_subject",
+        w.content "w_content",
+        w.viewcnt "w_viewcnt",
+        w.regdate "w_regdate",
+        u.id "u_id",
+        u.username "u_username",
+        u.name "u_name",
+        u.regdate "u_regdate"
         FROM
-            t5_write w, t5_user u
+        t5_write w, t5_user u
         WHERE
-            w.user_id = u.id
+        w.user_id = u.id
     </sql>
 
     <!-- JOIN 문에서 여러 테이블의 데이터 매핑 받기 -->
@@ -78,4 +78,14 @@
         DELETE FROM t5_write WHERE id = #{id}
     </delete>
 
+    <!-- 페이징용 쿼리 -->
+    <select id="selectFromRow" resultMap="mapWrite">
+        <include refid="SELECT_BASE"/>
+        ORDER BY w.id
+        LIMIT #{param1}, #{param2}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM t5_write
+    </select>
 </mapper>

@@ -37,3 +37,12 @@ FROM t5_authority a, t5_user_authorities u
 WHERE a.id = u.authority_id  AND  u.user_id = 3
 ;
 
+-- 페이징 테스트용 다량의 데이터
+INSERT INTO t5_write(user_id, subject, content)
+SELECT user_id, subject, content FROM t5_write;
+
+SELECT count(*) FROM t5_write;
+
+SELECT * FROM t5_write ORDER BY id desc limit 5;
+
+SELECT * FROM t5_write ORDER BY id desc limit 5, 5;
