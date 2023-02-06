@@ -46,3 +46,5 @@ SELECT count(*) FROM t5_write;
 SELECT * FROM t5_write ORDER BY id desc limit 5;
 
 SELECT * FROM t5_write ORDER BY id desc limit 5, 5;
+
+DELETE FROM t5_write WHERE id > 8;

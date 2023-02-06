@@ -30,7 +30,7 @@
         <span class="float-end">ViewCount : [[${dto.viewCnt}]]</span>
       </div>
 
-      <form name="frm" th:action="@{/board/update}" method="post">
+      <form name="frm" th:action="@{/board/update}" method="post" enctype="Multipart/form-data">
         <input type="hidden" name="id" th:value="${dto.id}"/>
         <div class="mb-3">
           <label>Writer : </label>
@@ -47,7 +47,34 @@
                     name="content">[[${dto.content}]]
           </textarea>
         </div>
-<!--        하단 link-->
+
+        <!-- 기존 첨부파일  목록 (삭제 가능) -->
+        <div class="container mt-3 mb-3 border rounded" th:if="${dto.files != null} and ${#lists.size(dto.files) > 0}">
+          <div id="delFiles"></div>  <!-- 삭제할 file 의 id 값(들)을 담기위한 div -->
+          <div class="mb-3 mt-3">
+            <label>첨부파일:</label>
+            <div class="input-group mb-2" th:each="fileDto : ${dto.files}">
+              <input class="form-control col-xs-3" type="text" readonly th:value="${fileDto.source }">
+              <button type="button"  class="btn btn-outline-danger" th:data-fileid-del="${fileDto.id}">삭제</button>
+            </div>
+          </div>
+        </div>
+        <!-- 기존 첨부파일  목록 (삭제 가능) -->
+
+        <!-- 새로운 첨부파일 추가  write.html 의 내용과 거의 똑같다.-->
+        <div class="container mt-3 mb-3 border rounded">
+          <div class="mb-3 mt-3">
+            <label>첨부파일추가:</label>
+            <div id="files">
+
+            </div>
+            <button type="button" id="btnAdd" class="btn btn-secondary">추가</button>
+          </div>
+        </div>
+        <!-- 새로운 첨부파일 추가 -->
+
+
+        <!--        하단 link-->
         <button type="submit" class="btn btn-outline-dark">Complete</button>
         <button type="button" class="btn btn-outline-dark" onclick="history.back()">Back</button>
         <a class="btn btn-outline-dark" th:href="@{/board/list(page=${session.page})}">List</a>
