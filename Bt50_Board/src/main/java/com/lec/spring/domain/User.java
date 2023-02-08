@@ -29,6 +29,7 @@ public class User {
 
     @ToString.Exclude
     @Builder.Default
+    @JsonIgnore
     private List<Authority> authorities = new ArrayList<>();
 
     public void addAuthority(Authority... authorities){

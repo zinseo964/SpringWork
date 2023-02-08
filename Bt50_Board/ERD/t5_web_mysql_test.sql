@@ -48,3 +48,10 @@ SELECT * FROM t5_write ORDER BY id desc limit 5;
 SELECT * FROM t5_write ORDER BY id desc limit 5, 5;
 
 DELETE FROM t5_write WHERE id > 8;
+
+SELECT c.id , c.content , c.regdate ,
+	u.id , u.username, u.password, u.name, u.regdate
+FROM t5_comment c, t5_user u
+WHERE c.user_id = u.id AND c.write_id = 4
+ORDER BY c.id DESC
+;
