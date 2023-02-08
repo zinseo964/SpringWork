@@ -274,7 +274,7 @@ public class BoardService {
             , Long[] delfile){   // 삭제될 첨부파일들
         int result = 0;
 
-        writeRepository.update(write);
+        result = writeRepository.update(write);
 
         // 첨부파일 추가
         addFiles(files, write.getId());
@@ -298,6 +298,15 @@ public class BoardService {
 
         Write write = writeRepository.findById(id);
         if(write != null) {
+            // 물리적으로 저장된 첨부파일(들) 삭제
+            List<FileDTO> fileList = fileRepository.findByWrite(id);
+            if(fileList != null && fileList.size() > 0) {
+                for(FileDTO file : fileList) {
+                    delFile(file);
+                }
+            }
+
+            // 글삭제 (참조하는 첨부파일, 댓글 등도 같이 삭제 될 것이다 ON DELETE CASCADE)
             result = writeRepository.delete(write);
         }
 

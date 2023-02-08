@@ -36,7 +36,7 @@ public class U {
     }
 
     // 첨부파일 정보 출력하기
-    public static void printFileInfo(MultipartFile file) throws IOException {
+    public static void printFileInfo(MultipartFile file) {
         String originalFileName = file.getOriginalFilename();   // 최초 업로드 했을 때의 원본 파일명
 
         if (originalFileName == null || originalFileName.length() == 0) {

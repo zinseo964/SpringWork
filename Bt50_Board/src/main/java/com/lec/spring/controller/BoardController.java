@@ -68,7 +68,7 @@ public class BoardController {
             @ModelAttribute("dto") Write write
             , @RequestParam Map<String, MultipartFile> files // 새로 추가될 첨부파일들
             , Long[] delfile  // 삭제될 파일들
-            , Model model){
+            , Model model) throws IOException {
         model.addAttribute("result", boardService.update(write, files, delfile));
         return "board/updateOk";
     }

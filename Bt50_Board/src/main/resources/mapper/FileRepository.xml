@@ -58,7 +58,7 @@
     </delete>
 
     <delete id="delete" flushCache="true">
-        DELETE FROM t5_file WHERE write_id = #{write_id}
+        DELETE FROM t5_file WHERE id = #{id}
     </delete>
 
 </mapper>
