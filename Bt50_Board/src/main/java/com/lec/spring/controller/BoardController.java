@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,8 +24,12 @@ import java.util.Map;
 @RequestMapping("/board")
 public class BoardController {
 
-    @Autowired
     private BoardService boardService;
+
+    @Autowired
+    public void setBoardService(BoardService boardService) {
+        this.boardService = boardService;
+    }
 
     public BoardController(){
         System.out.println("BoardController() 생성");
@@ -37,10 +40,10 @@ public class BoardController {
 
     @PostMapping("/write")
     public String writeOk(
-            @RequestParam Map<String, MultipartFile> files
+            @RequestParam Map<String, MultipartFile> files     // 첨부파일들
             , @ModelAttribute("dto") Write write
             , Model model
-    ) throws IOException {
+    ){
         model.addAttribute("result", boardService.write(write, files));
         return "board/writeOk";
     }
@@ -48,6 +51,7 @@ public class BoardController {
     @GetMapping("/detail")
     public void detail(long id, Model model){
         model.addAttribute("list", boardService.detail(id));
+        model.addAttribute("conPath", U.getRequest().getContextPath());
     }
 
     // 페이징 사용
@@ -66,9 +70,9 @@ public class BoardController {
     @PostMapping("/update")
     public String updateOk(
             @ModelAttribute("dto") Write write
-            , @RequestParam Map<String, MultipartFile> files // 새로 추가될 첨부파일들
-            , Long[] delfile  // 삭제될 파일들
-            , Model model) throws IOException {
+            , @RequestParam Map<String, MultipartFile> files     // 새로 추가될 첨부파일들
+            , Long[] delfile    // 삭제될 파일들
+            , Model model){
         model.addAttribute("result", boardService.update(write, files, delfile));
         return "board/updateOk";
     }
@@ -93,7 +97,5 @@ public class BoardController {
         U.getSession().setAttribute("pageRows", pageRows);
         return "redirect:/board/list?page=" + page;
     }
-
-
 
 }
