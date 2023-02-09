@@ -24,7 +24,6 @@ public class Write {
     // 첨부파일, 댓글
     @ToString.Exclude
     @Builder.Default // 아래와 같이 초기값이 있으면 @Builder.Default 처리 (Builder 제공 안한다는 의미)
-    private List<FileDTO> files = new ArrayList<>();
-
+    private List<FileDTO> fileList = new ArrayList<>(); // files 라는 이름을 사용하면 error 가 나서 fileList 로 이름 바꿔주기
 
 }

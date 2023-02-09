@@ -74,6 +74,10 @@ public class BoardService {
     private void addFiles(Map<String, MultipartFile> files, Long id){
         if(files != null){
             for(Map.Entry<String, MultipartFile> e :files.entrySet()){
+
+                // name = "upfile##" 인 경우만 첨부파일 등록 (다른 웹에디터와 섞이지 않도록)
+                if(!e.getKey().startsWith("upfile")) continue;
+
                 // 첨부파일 정보 출력
                 System.out.println("\n첨부파일 정보: " + e.getKey());   // name값
                 U.printFileInfo(e.getValue());
@@ -168,7 +172,7 @@ public class BoardService {
             // 첨부파일(들) 정보 가져오기
             List<FileDTO> fileList = fileRepository.findByWrite(write.getId());
             setImage(fileList);// 이미지 파일 여부 세팅
-            write.setFiles(fileList);
+            write.setFileList(fileList);
 
             list.add(write);
         }
@@ -211,7 +215,7 @@ public class BoardService {
             // 첨부파일 정보 가져오기
             List<FileDTO> fileList = fileRepository.findByWrite(write.getId());
             setImage(fileList);   // 이미지 파일 여부 세팅
-            write.setFiles(fileList);
+            write.setFileList(fileList);
 
             list.add(write);
         }

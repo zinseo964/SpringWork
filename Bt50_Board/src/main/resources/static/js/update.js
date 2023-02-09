@@ -17,6 +17,10 @@ $(function(){
               $(this).parent().remove()
           });
 
+       // Summernote 추가
+           $('#content').summernote({
+               height: 300,
+           });
 
        function deleteFiles(fileId){
           // 삭제할 file 의 id 값(들)을 #delFiles 에 담아 submit 한다

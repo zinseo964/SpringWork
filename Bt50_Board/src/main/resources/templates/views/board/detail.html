@@ -18,6 +18,9 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 
         <script th:inline="javascript">
         const conPath = [[${conPath}]];
@@ -58,7 +61,7 @@
             </div>
             <div class="mb-3 mt-3">
                 <label>내용:</label>
-                <div class="border bg-light rounded p-2" >[[${dto.content }]]</div>
+                <div class="border bg-light rounded p-2" th:utext="${dto.content}"></div>
             </div>
 
             <!-- 첨부파일목록 -->
@@ -68,11 +71,11 @@
 <!--                   첨부파일 이름, 다운로드 링크  -->
                     <ul class="list-group mb-1">
                         <li class="list-group-item"
-                            th:each="fileDto : ${dto.files}"><a th:href="@{download(id=${fileDto.id})}">[[${fileDto
+                            th:each="fileDto : ${dto.fileList}"><a th:href="@{download(id=${fileDto.id})}">[[${fileDto
                             .source}]]</a></li>
                     </ul>
 <!--                    이미지인 경우 보여주기 -->
-                    <div th:each="fileDto : ${dto.files}" th:if="${fileDto.image}">
+                    <div th:each="fileDto : ${dto.fileList}" th:if="${fileDto.image}">
                         <img th:src="@{'/upload/' + ${fileDto.file}}" class="img-thumbnail"
                              alt="Cinque Terre">
                     </div>

@@ -15,6 +15,9 @@
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
     <script th:src="@{/js/update.js}"></script>
 
     <title>Edit : [[${dto.subject}]]</title>
@@ -44,16 +47,16 @@
         <div class="mb-3 mt-3">
           <label for="content">Content : </label>
           <textarea class="form-control" rows="5" id="content" placeholder="Write a content"
-                    name="content">[[${dto.content}]]
-          </textarea>
+                    name="content" th:utext="${dto.content}"></textarea>
         </div>
 
         <!-- 기존 첨부파일  목록 (삭제 가능) -->
-        <div class="container mt-3 mb-3 border rounded" th:if="${dto.files != null} and ${#lists.size(dto.files) > 0}">
+        <div class="container mt-3 mb-3 border rounded"
+             th:if="${dto.fileList != null} and ${#lists.size(dto.fileList) > 0}">
           <div id="delFiles"></div>  <!-- 삭제할 file 의 id 값(들)을 담기위한 div -->
           <div class="mb-3 mt-3">
             <label>첨부파일:</label>
-            <div class="input-group mb-2" th:each="fileDto : ${dto.files}">
+            <div class="input-group mb-2" th:each="fileDto : ${dto.fileList}">
               <input class="form-control col-xs-3" type="text" readonly th:value="${fileDto.source }">
               <button type="button"  class="btn btn-outline-danger" th:data-fileid-del="${fileDto.id}">삭제</button>
             </div>
