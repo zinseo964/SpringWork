@@ -15,6 +15,7 @@
         <module name="Bt02_DI_Bean" />
         <module name="Bt10_RequestMapping" />
         <module name="Bt09_MVC" />
+        <module name="Bt60_JPA" />
         <module name="Bt16_CookieSession" />
       </profile>
     </annotationProcessing>
@@ -29,6 +30,7 @@
       <module name="Bt15_MyBatis" options="-parameters" />
       <module name="Bt16_CookieSession" options="-parameters" />
       <module name="Bt50_Board" options="-parameters" />
+      <module name="Bt60_JPA" options="-parameters" />
       <module name="SpringWork" options="-parameters" />
     </option>
   </component>

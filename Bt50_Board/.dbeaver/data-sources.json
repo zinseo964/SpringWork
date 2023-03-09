@@ -1,16 +1,16 @@
 {
 	"folders": {},
 	"connections": {
-		"mysql8-1860c34bf20-17f25c41e01e8446": {
+		"mysql8-1866e85d492-25a3edf8d01eb28": {
 			"provider": "mysql",
 			"driver": "mysql8",
-			"name": "mydb2211",
+			"name": "naeboojadb",
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
 				"port": "3306",
-				"database": "mydb2211",
-				"url": "jdbc:mysql://localhost:3306/mydb2211",
+				"database": "naeboojadb",
+				"url": "jdbc:mysql://localhost:3306/naeboojadb",
 				"configurationType": "MANUAL",
 				"home": "/usr/local/mysql-8.0.32-macos13-x86_64",
 				"type": "dev",
