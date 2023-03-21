@@ -24,11 +24,11 @@ class HelloWorldControllerTest {
 
     @Test
     void helloWorld() throws Exception{
-        // get
+        // get 방식 요청의 Test
         mockMvc.perform(MockMvcRequestBuilders.get("/helloworld"))
                 .andDo(print()) // request-response 정보 출력
                 .andExpect(status().isOk()) // 200 response 만
-                .andExpect(content().string("hello-world")) // reponse 내용은 helloworld 를 기대함
+                .andExpect(content().string("hello-world")) // response 내용은 hello-world 를 기대함
                 ;
     }
 }
